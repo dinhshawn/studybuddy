@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create
+{% endblock %}
+
+{% block main %}
+    <h1>Create Your Study Group</h1>
+    <form action="/create" method="post">
+        <div class="form-group">
+            <input autofocus class="form-control" name="name" placeholder="Name of Group" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="people" name="people" placeholder="Number of People" type="number" min="2" max="99">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="subject" placeholder="Subject (ex: CS50)" type="text">
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="location">
+                <option disabled selected value="">Location</option>
+                <option>Widener Library</option>
+                <option>Lamont Library</option>
+                <option>Science Center</option>
+                <option>Harvard Law School Library</option>
+                <option>Smith Campus Center</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="other" name="other" placeholder="Name of location if 'Other' selected" type="text">
+        </div>
+        Start Date-Time
+        <div class="form-group">
+            <input class="form-control" name="start" type="datetime-local">
+        </div>
+        End Date-Time
+        <div class="form-group">
+            <input class="form-control" name="end" type="datetime-local">
+        </div>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+    <h1>Search Study Groups</h1>
+    <p>Enter a desired name, creator, subject, or location</p>
+    <form action="/search" method="post">
+        <div class="form-group">
+            <input autofocus class="form-control" name="search" placeholder="Search" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+{% endblock %}

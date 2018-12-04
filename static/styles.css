@@ -1,0 +1,55 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+
+    /* font and color for brand */
+    color: yellow;
+    font-family: "Lobster", serif;
+}
+
+/* colors for brand */
+nav .navbar-brand .yellow
+{
+    color: yellow;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: 27%;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+body
+{
+    background-color: black;
+    color: yellow;
+}
+
+.table-wrapper-scroll-y {
+    /* scrolling table inspired by https://mdbootstrap.com/docs/jquery/tables/scroll/ */
+    display: block;
+    max-height: 500px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

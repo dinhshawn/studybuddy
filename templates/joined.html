@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Joined
+{% endblock %}
+
+{% block main %}
+    <h1>Current Group</h1>
+    <p>Group Name: {{name}}</p>
+    <p>Creator: {{creator}}</p>
+    <p>Subject: {{subject}}</p>
+    <p>Meeting Location: {{location}}</p>
+    <p>Occupancy: {{members}}</p>
+
+    <form action="/joined" method="post">
+        <button class="btn btn-primary" type="submit">Leave this group</button>
+    </form>
+
+
+{% endblock %}
