@@ -32,7 +32,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("postgres://gqesihurzbthsn:30e88c55db5221862b567e0d294d599b7bd2066f2dfe62ba7911d059d802a878@ec2-184-72-239-186.compute-1.amazonaws.com:5432/dbr1rej9mc50n8")
+db = SQL("postgres://ebhdvivxrbjlnw:7f9e9d697476a085615191968fb89f7ecb3e3b927303695279fa6c774ffdb0f8@ec2-54-225-196-122.compute-1.amazonaws.com:5432/d47r413ujlrmt5")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -140,7 +140,7 @@ def index():
         current_time = datetime.datetime.now(tz)
 
         # removes any study groups that have already passed their end time
-        if current_time >= group['end']:
+        if current_time >= group['end_time']:
             db.execute("DELETE FROM joined WHERE group_id = :group_id", group_id=group['id'])
             db.execute("DELETE FROM groups WHERE id = :group_id", group_id=group['id'])
 
@@ -160,8 +160,8 @@ def index():
             cells["occupancy"] = group['occupancy']
             cells["people"] = group['people']
             # formats datetime for start and end times as 'YYYY-MM-DD at HH:MM' to look cleaner
-            cells["start"] = str(group['start'])[:10] + " at " + str(group['start'])[11:16]
-            cells["end"] = str(group['end'])[:10] + " at " + str(group['end'])[11:16]
+            cells["start"] = str(group['start_time'])[:10] + " at " + str(group['start_time'])[11:16]
+            cells["end"] = str(group['end_time'])[:10] + " at " + str(group['end_time'])[11:16]
 
             rows.append(cells)
 
@@ -211,8 +211,8 @@ def create():
         people = request.form.get("people")
         subject = request.form.get("subject")
         location = request.form.get("location")
-        start = request.form.get("start")
-        end = request.form.get("end")
+        start_time = request.form.get("start")
+        end_time = request.form.get("end")
 
 
         # checks if name has been entered properly
@@ -238,7 +238,7 @@ def create():
             return apology("Choose a number between 2 and 99 inclusive")
 
         #checks if valid number of people for study group has been entered
-        if start >= end:
+        if start_time >= end_time:
             return apology("Your start time must be before your end time")
 
         # checks if group name already exists
@@ -256,8 +256,8 @@ def create():
             location = request.form.get("other")
 
         # adds study group to database
-        db.execute("INSERT INTO groups (creator_id, name, people, subject, location, 'star', end) VALUES(:creator_id, :name, :people, :subject, :location, :start, :end)",
-                    creator_id=current, name=name, people=int(people), subject=subject, location=location, start=start, end=end)
+        db.execute("INSERT INTO groups (creator_id, name, people, subject, location, start_time, end_time) VALUES(:creator_id, :name, :people, :subject, :location, :start_time, :end_time)",
+                    creator_id=current, name=name, people=int(people), subject=subject, location=location, start_time=start_time, end_time=end_time)
 
         # gets id of newly created study group
         group_id = db.execute("SELECT id FROM groups WHERE name = :name", name=name)
@@ -305,8 +305,8 @@ def search():
                 cells["location"] = group['location']
                 cells["occupancy"] = group['occupancy']
                 cells["people"] = group['people']
-                cells["start"] = group['start']
-                cells["end"] = group['end']
+                cells["start"] = group['start_time']
+                cells["end"] = group['end_time']
 
                 rows.append(cells)
 
