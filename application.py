@@ -32,7 +32,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("postgres://gqesihurzbthsn:30e88c55db5221862b567e0d294d599b7bd2066f2dfe62ba7911d059d802a878@ec2-184-72-239-186.compute-1.amazonaws.com:5432/dbr1rej9mc50n8")
+db = SQL("sqlite:///studybuddy.db")
 
 
 @app.route("/login", methods=["GET", "POST"])

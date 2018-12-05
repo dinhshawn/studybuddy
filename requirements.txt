@@ -4,4 +4,3 @@ Flask-Session
 requests
 gunicorn
 pytz
-psycopg2
