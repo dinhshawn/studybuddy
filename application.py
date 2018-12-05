@@ -137,10 +137,10 @@ def index():
 
         # stores current datetime in format similar to what is stored for each study group in database
         # code inspired by https://stackoverflow.com/questions/7999935/python-datetime-to-string-without-microsecond-component
-        current_time = datetime.datetime.now(tz).strftime("%Y-%m-%dT%H:%M")
+        current_time = datetime.datetime.now(tz)
 
         # removes any study groups that have already passed their end time
-        if str(current_time) >= group['end']:
+        if current_time >= group['end']:
             db.execute("DELETE FROM joined WHERE group_id = :group_id", group_id=group['id'])
             db.execute("DELETE FROM groups WHERE id = :group_id", group_id=group['id'])
 
