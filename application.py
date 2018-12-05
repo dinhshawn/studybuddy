@@ -140,7 +140,7 @@ def index():
         current_time = datetime.datetime.now(tz).strftime("%Y-%m-%dT%H:%M")
 
         # removes any study groups that have already passed their end time
-        if current_time >= group['end']:
+        if str(current_time) >= group['end']:
             db.execute("DELETE FROM joined WHERE group_id = :group_id", group_id=group['id'])
             db.execute("DELETE FROM groups WHERE id = :group_id", group_id=group['id'])
 
