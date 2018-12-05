@@ -33,7 +33,6 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///studybuddy.db")
-# postgres://bgzotjmjevjont:52ab2d615522084d5ee516ab628cd11bd458bb72f95e0fb8ed39e5e7156ce865@ec2-50-19-249-121.compute-1.amazonaws.com:5432/ddsoimeijijndj
 
 
 @app.route("/login", methods=["GET", "POST"])
