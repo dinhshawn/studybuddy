@@ -407,9 +407,11 @@ def complete_history():
 
 def errorhandler(e):
     """Handle error"""
+    if not isinstance(e, HTTPException):
+        e = InternalServerError()
     return apology(e.name, e.code)
 
 
-# listen for errors
+# Listen for errors
 for code in default_exceptions:
     app.errorhandler(code)(errorhandler)
