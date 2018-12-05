@@ -256,7 +256,7 @@ def create():
             location = request.form.get("other")
 
         # adds study group to database
-        db.execute("INSERT INTO groups (creator_id, name, people, subject, location, start, end) VALUES(:creator_id, :name, :people, :subject, :location, :start, :end)",
+        db.execute("INSERT INTO groups (creator_id, name, people, subject, location, 'star', end) VALUES(:creator_id, :name, :people, :subject, :location, :start, :end)",
                     creator_id=current, name=name, people=int(people), subject=subject, location=location, start=start, end=end)
 
         # gets id of newly created study group
